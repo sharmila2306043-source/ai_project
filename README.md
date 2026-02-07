@@ -3,6 +3,7 @@
 > An intelligent lead management and email campaign system that automatically scores, segments, and engages B2B prospects using AI
 
 ## 📋 Table of Contents
+
 - [Overview](#overview)
 - [Problem Statement](#problem-statement)
 - [Features](#features)
@@ -25,6 +26,7 @@
 This platform automates the entire outbound sales workflow from lead scoring to personalized email campaigns. It combines machine learning with business rules to identify high-value prospects and generates customized outreach emails using AI.
 
 **Key Capabilities:**
+
 - 🎯 Intelligent lead scoring (0-100% scale)
 - 📊 Multi-dimensional segmentation (Enterprise, Mid-Market, SMB, Startup)
 - 📧 AI-powered personalized email generation (LLaMA 3.1)
@@ -37,12 +39,14 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 ## Problem Statement
 
 **Original Challenge:**
+
 - **228 leads in database but only 100 displaying** in frontend (pagination issue)
 - **All lead scores showing 0%** preventing email campaign functionality
 - **No high-value leads available** for targeted outreach (requires score >60%)
 - **Manual lead qualification** consuming excessive sales team time
 
 **Solution Delivered:**
+
 - ✅ Fixed pagination: Now displays all leads (up to 1,000)
 - ✅ Implemented hybrid scoring algorithm: 161 high-value leads (>70%), 65 medium (40-70%), 2 low (<40%)
 - ✅ Automated lead enrichment with AI segmentation
@@ -53,6 +57,7 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 ## Features
 
 ### 🎯 Lead Management
+
 - **Smart Lead Scoring:** Hybrid algorithm combining ML predictions with business rules
   - Deal size analysis (15-50 base points)
   - Decision-maker identification (+25 points)
@@ -65,6 +70,7 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 - **Lead Enrichment:** AI-powered segmentation and categorization
 
 ### 📧 Email Campaigns
+
 - **AI Email Generation:** Personalized emails using LLaMA 3.1 via Groq
 - **Template Variables:** Dynamic content insertion (name, company, pain points)
 - **High-Value Targeting:** Automatic filtering of leads with score >60%
@@ -72,12 +78,14 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 - **Campaign Tracking:** Monitor open rates, clicks, and responses
 
 ### 📊 Analytics Dashboard
+
 - **Score Distribution:** Visual breakdown (High/Medium/Low categories)
 - **Segment Analysis:** Performance by Enterprise/Mid-Market/SMB/Startup
 - **Conversion Funnel:** Track leads through qualification stages
 - **Revenue Forecasting:** Deal value projections based on lead scores
 
 ### 🔄 Automation
+
 - **Scheduled Campaigns:** Run email campaigns at optimal times
 - **Lead Scoring Updates:** Automatic recalculation based on new data
 - **Follow-up Sequences:** Timed multi-touch campaigns
@@ -87,6 +95,7 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 ## Tech Stack
 
 ### Backend
+
 - **Framework:** FastAPI (Python 3.11+)
 - **Database:** MongoDB (Motor async driver)
 - **ML Model:** Scikit-learn LogisticRegression
@@ -96,6 +105,7 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 - **Environment:** Python-dotenv
 
 ### Frontend
+
 - **Framework:** React 18 with TypeScript
 - **Build Tool:** Vite
 - **Styling:** Tailwind CSS
@@ -104,6 +114,7 @@ This platform automates the entire outbound sales workflow from lead scoring to 
 - **Icons:** Lucide React
 
 ### DevOps
+
 - **API Server:** Uvicorn ASGI server
 - **CORS:** Enabled for localhost development
 - **Hot Reload:** Both backend and frontend support live updates
@@ -124,6 +135,7 @@ Before installation, ensure you have:
 5. **Git** (optional) - For cloning the repository
 
 **System Requirements:**
+
 - OS: Windows 10/11, macOS 10.15+, Linux (Ubuntu 20.04+)
 - RAM: 4GB minimum (8GB recommended)
 - Storage: 500MB free space
@@ -165,12 +177,14 @@ npm run dev  # Starts on http://localhost:5173
 ### Step 1: Install MongoDB
 
 #### Windows
+
 1. Download MongoDB Community Server from [mongodb.com](https://www.mongodb.com/try/download/community)
 2. Run installer with default settings (installs as Windows Service)
 3. MongoDB will auto-start on `localhost:27017`
 4. Verify: Open Command Prompt and run `mongosh` (should connect successfully)
 
 #### macOS
+
 ```bash
 brew tap mongodb/brew
 brew install mongodb-community
@@ -179,6 +193,7 @@ mongosh  # Test connection
 ```
 
 #### Linux (Ubuntu/Debian)
+
 ```bash
 wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
@@ -254,6 +269,7 @@ CORS_ORIGINS=http://localhost:5173
 ```
 
 **Get Groq API Key:**
+
 1. Visit [console.groq.com](https://console.groq.com/)
 2. Sign up (free tier available)
 3. Navigate to API Keys section
@@ -271,6 +287,7 @@ python auto_generate_leads.py
 ```
 
 **What it does:**
+
 - Creates **200 realistic B2B leads** with diverse characteristics
 - Generates company names, contacts, deal values ($10K-$500K)
 - Assigns job roles (CEO, CTO, CFO, CMO, VP Sales, etc.)
@@ -279,6 +296,7 @@ python auto_generate_leads.py
 - Automatically calculates lead scores and conversion probabilities
 
 **Output:**
+
 ```
 ✓ Generated 200 leads
 ✓ Stored in MongoDB (ai_sales_db.leads)
@@ -291,6 +309,7 @@ python auto_generate_leads.py
 ### Option 2: Import CSV Data
 
 1. Prepare CSV file with columns:
+
    ```csv
    company_name,contact_name,email,job_role,quote_value,region,items_count,past_engagements
    ```
@@ -343,11 +362,13 @@ curl -X POST http://localhost:8000/leads \
 ### Data Flow
 
 1. **Lead Enrichment:**
+
    ```
    Raw Lead → Business Rules → ML Model → Hybrid Score → MongoDB
    ```
 
 2. **Email Campaign:**
+
    ```
    High-Value Leads (>60%) → AI Prompt → LLaMA 3.1 → Personalized Email → SMTP → Send
    ```
@@ -368,6 +389,7 @@ curl -X POST http://localhost:8000/leads \
 ### Database Schema
 
 **leads Collection:**
+
 ```json
 {
   "_id": "ObjectId",
@@ -379,9 +401,9 @@ curl -X POST http://localhost:8000/leads \
   "region": "string",
   "items_count": "number",
   "past_engagements": "number",
-  "lead_score": "decimal (0-1)",  // Used by frontend
+  "lead_score": "decimal (0-1)", // Used by frontend
   "conversion_probability": "decimal (0-1)",
-  "segment": "string",  // Enterprise/Mid-Market/SMB/Startup
+  "segment": "string", // Enterprise/Mid-Market/SMB/Startup
   "created_at": "datetime"
 }
 ```
@@ -391,6 +413,7 @@ curl -X POST http://localhost:8000/leads \
 ## API Documentation
 
 ### Base URL
+
 ```
 http://localhost:8000
 ```
@@ -398,11 +421,13 @@ http://localhost:8000
 ### Endpoints
 
 #### 1. Get All Leads
+
 ```http
 GET /leads
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -423,12 +448,14 @@ GET /leads
 ```
 
 #### 2. Create New Lead
+
 ```http
 POST /leads
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "company_name": "Tech Innovations Inc",
@@ -443,6 +470,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "message": "Lead created successfully",
@@ -452,28 +480,33 @@ Content-Type: application/json
 ```
 
 #### 3. Get Single Lead
+
 ```http
 GET /leads/{lead_id}
 ```
 
 #### 4. Update Lead
+
 ```http
 PUT /leads/{lead_id}
 Content-Type: application/json
 ```
 
 #### 5. Delete Lead
+
 ```http
 DELETE /leads/{lead_id}
 ```
 
 #### 6. Generate AI Email
+
 ```http
 POST /generate-email
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "lead_id": "65f1a2b3c4d5e6f7g8h9i0j1",
@@ -483,6 +516,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "subject": "Exclusive Early Access: Transform Your Sales Process",
@@ -492,12 +526,14 @@ Content-Type: application/json
 ```
 
 #### 7. Send Email Campaign
+
 ```http
 POST /send-campaign
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "lead_ids": ["id1", "id2", "id3"],
@@ -507,11 +543,13 @@ Content-Type: application/json
 ```
 
 #### 8. Recalculate Lead Scores
+
 ```http
 POST /recalculate-scores
 ```
 
 **Response:**
+
 ```json
 {
   "message": "Recalculated 228 leads",
@@ -532,12 +570,14 @@ POST /recalculate-scores
 Navigate to `http://localhost:5173` after starting both servers.
 
 **Dashboard Features:**
+
 - **Total Leads:** Current database count
 - **High-Value Leads:** Count of leads with score >70%
 - **Conversion Rate:** Average lead score across all prospects
 - **Total Revenue Potential:** Sum of quote_value for high-value leads
 
 **Score Distribution Chart:**
+
 - Green: High (>70%) - Priority targets
 - Yellow: Medium (40-70%) - Nurture campaigns
 - Red: Low (<40%) - Re-qualification needed
@@ -545,12 +585,14 @@ Navigate to `http://localhost:5173` after starting both servers.
 ### 2. Lead Management
 
 **Viewing Leads:**
+
 - All leads display with color-coded scores
 - Green badge: High-value (>70%)
 - Yellow badge: Medium (40-70%)
 - Red badge: Low (<40%)
 
 **Filtering:**
+
 - Click "Filter" dropdown to narrow by:
   - Score range (High/Medium/Low)
   - Segment (Enterprise/Mid-Market/SMB/Startup)
@@ -558,6 +600,7 @@ Navigate to `http://localhost:5173` after starting both servers.
   - Deal size ($0-$50K, $50K-$150K, $150K+)
 
 **Lead Details:**
+
 - Click any lead card to view full profile
 - Edit fields directly (auto-saves)
 - Rescore button to recalculate with new data
@@ -577,6 +620,7 @@ Navigate to `http://localhost:5173` after starting both servers.
 7. Click "Send Campaign"
 
 **AI Email Generation:**
+
 - Powered by LLaMA 3.1 (via Groq)
 - Personalization variables:
   - `{{contact_name}}` - Recipient's name
@@ -586,13 +630,14 @@ Navigate to `http://localhost:5173` after starting both servers.
   - `{{quote_value}}` - Deal size context
 
 **Example Generated Email:**
+
 ```
 Subject: Sarah, streamline FinTech Capital Partners' sales process
 
 Hi Sarah,
 
-As CFO of FinTech Capital Partners, you understand the importance 
-of maximizing ROI on every sales initiative. I noticed your team 
+As CFO of FinTech Capital Partners, you understand the importance
+of maximizing ROI on every sales initiative. I noticed your team
 is evaluating solutions in the $350K range.
 
 Our AI-powered platform has helped similar enterprise clients:
@@ -600,7 +645,7 @@ Our AI-powered platform has helped similar enterprise clients:
 - Increase conversion rates by 28%
 - Automate 60% of lead qualification
 
-Would you be open to a 15-minute call next week to explore how 
+Would you be open to a 15-minute call next week to explore how
 we can deliver similar results for FinTech Capital Partners?
 
 Best regards,
@@ -610,17 +655,20 @@ Best regards,
 ### 4. Analytics
 
 **Segment Performance:**
+
 - Enterprise: 45 leads, 85% avg score
 - Mid-Market: 98 leads, 68% avg score
 - SMB: 72 leads, 54% avg score
 - Startup: 13 leads, 42% avg score
 
 **Regional Analysis:**
+
 - North America: Highest engagement (72% avg score)
 - Europe: Moderate engagement (61% avg score)
 - Asia-Pacific: Growing market (58% avg score)
 
 **Export Reports:**
+
 - Click "Export CSV" to download filtered data
 - Includes all fields plus calculated scores
 - Use for external CRM imports or analysis
@@ -636,6 +684,7 @@ Each system runs **independently** with its own local MongoDB database. Data doe
 **Setup Process for Each Computer:**
 
 #### Computer A (Your System)
+
 ```bash
 # Already set up with 228 leads
 # Backend: http://localhost:8000
@@ -652,14 +701,16 @@ Each system runs **independently** with its own local MongoDB database. Data doe
    - Get Groq API key
 
 2. **Copy Project Files:**
+
    ```bash
    # Option 1: Git clone
    git clone <repository-url>
-   
+
    # Option 2: Copy entire Outbound folder via USB/cloud
    ```
 
 3. **Start MongoDB:**
+
    ```bash
    # Windows: Should auto-start
    # macOS: brew services start mongodb-community
@@ -667,18 +718,20 @@ Each system runs **independently** with its own local MongoDB database. Data doe
    ```
 
 4. **Backend Setup:**
+
    ```bash
    cd backend
    pip install -r requirements.txt
-   
+
    # Generate fresh data (200 leads)
    python auto_generate_leads.py
-   
+
    # Start server
    uvicorn app.main:app --reload
    ```
 
 5. **Frontend Setup:**
+
    ```bash
    cd Frontend
    npm install
@@ -691,6 +744,7 @@ Each system runs **independently** with its own local MongoDB database. Data doe
    - Completely independent from Computer A
 
 **Data Isolation:**
+
 - ✅ Each computer has separate MongoDB database
 - ✅ Leads generated/imported are local only
 - ✅ Email campaigns sent from each system are independent
@@ -702,6 +756,7 @@ Each system runs **independently** with its own local MongoDB database. Data doe
 If you need to sync data:
 
 1. **Export from Computer A:**
+
    ```bash
    cd backend
    mongoexport --db=ai_sales_db --collection=leads --out=leads_export.json
@@ -727,11 +782,13 @@ If you need to sync data:
 **Symptom:** Email Campaign page displays no leads even though database has data.
 
 **Causes:**
+
 - All lead scores are below 60% threshold
 - Backend not running or API connection failed
 - Frontend cache showing old data
 
 **Solutions:**
+
 ```bash
 # Check lead scores in database
 cd backend
@@ -758,12 +815,14 @@ python recalculate_scores.py
 
 **Solution:**
 Verify [segmentation.py](backend/app/segmentation.py) returns scores divided by 100:
+
 ```python
 # Correct implementation
 return hybrid_score / 100  # Returns 0-1 scale
 ```
 
 Then recalculate:
+
 ```bash
 cd backend
 python recalculate_scores.py
@@ -771,7 +830,8 @@ python recalculate_scores.py
 
 #### 3. MongoDB Connection Failed
 
-**Symptom:** 
+**Symptom:**
+
 ```
 pymongo.errors.ServerSelectionTimeoutError: localhost:27017
 ```
@@ -779,6 +839,7 @@ pymongo.errors.ServerSelectionTimeoutError: localhost:27017
 **Solutions:**
 
 **Windows:**
+
 ```bash
 # Check if MongoDB service is running
 services.msc  # Look for "MongoDB Server"
@@ -788,6 +849,7 @@ net start MongoDB
 ```
 
 **macOS:**
+
 ```bash
 brew services start mongodb-community
 # Or manually:
@@ -795,6 +857,7 @@ mongod --config /usr/local/etc/mongod.conf
 ```
 
 **Linux:**
+
 ```bash
 sudo systemctl status mongod
 sudo systemctl start mongod
@@ -808,6 +871,7 @@ sudo systemctl start mongod
 
 **Solution:**
 Check [database.py](backend/app/database.py):
+
 ```python
 async def get_all_leads(limit: int = 1000):  # Should be 1000, not 100
 ```
@@ -815,11 +879,13 @@ async def get_all_leads(limit: int = 1000):  # Should be 1000, not 100
 #### 5. AI Email Generation Fails
 
 **Symptom:**
+
 ```
 Error generating email: 401 Unauthorized
 ```
 
 **Causes:**
+
 - Invalid or missing Groq API key
 - API rate limit exceeded
 - Network connection issue
@@ -827,6 +893,7 @@ Error generating email: 401 Unauthorized
 **Solutions:**
 
 1. **Verify API Key:**
+
 ```bash
 # Check .env file
 cat backend/.env | grep GROQ_API_KEY
@@ -848,6 +915,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 #### 6. Email Sending Fails (SMTP Error)
 
 **Symptom:**
+
 ```
 SMTPAuthenticationError: Username and Password not accepted
 ```
@@ -855,6 +923,7 @@ SMTPAuthenticationError: Username and Password not accepted
 **Solutions:**
 
 **Gmail Users:**
+
 1. Enable 2-factor authentication on Google account
 2. Generate App-Specific Password:
    - Visit: https://myaccount.google.com/apppasswords
@@ -865,6 +934,7 @@ SMTPAuthenticationError: Username and Password not accepted
    ```
 
 **Other Providers:**
+
 - Outlook: `smtp.office365.com:587`
 - Yahoo: `smtp.mail.yahoo.com:587`
 - Custom SMTP: Check provider documentation
@@ -872,11 +942,13 @@ SMTPAuthenticationError: Username and Password not accepted
 #### 7. Module Not Found Errors
 
 **Symptom:**
+
 ```
 ModuleNotFoundError: No module named 'fastapi'
 ```
 
 **Solution:**
+
 ```bash
 cd backend
 
@@ -896,6 +968,7 @@ pip list | grep fastapi
 #### 8. Port Already in Use
 
 **Symptom:**
+
 ```
 Error: Port 8000 is already in use
 ```
@@ -903,6 +976,7 @@ Error: Port 8000 is already in use
 **Solutions:**
 
 **Windows:**
+
 ```bash
 # Find process using port 8000
 netstat -ano | findstr :8000
@@ -912,29 +986,34 @@ taskkill /PID 12345 /F
 ```
 
 **macOS/Linux:**
+
 ```bash
 # Find and kill process
 lsof -ti:8000 | xargs kill -9
 ```
 
 **Alternative:** Use different port:
+
 ```bash
 uvicorn app.main:app --reload --port 8001
 ```
 
 Update frontend API URL in `src/services/api.ts`:
+
 ```typescript
-const API_BASE_URL = 'http://localhost:8001';
+const API_BASE_URL = "http://localhost:8001";
 ```
 
 #### 9. Frontend Build Errors
 
 **Symptom:**
+
 ```
 Error: Cannot find module '@vitejs/plugin-react'
 ```
 
 **Solution:**
+
 ```bash
 cd Frontend
 
@@ -955,6 +1034,7 @@ npm run dev
 
 **Solution:**
 Scores are calculated once and stored. After data changes, run:
+
 ```bash
 cd backend
 python recalculate_scores.py
@@ -962,12 +1042,13 @@ python recalculate_scores.py
 
 **Automatic Recalculation:**
 To enable automatic score updates when data changes, add to [main.py](backend/app/main.py):
+
 ```python
 @app.put("/leads/{lead_id}")
 async def update_lead(lead_id: str, lead: LeadUpdate):
     # Update lead data
     await update_lead_in_db(lead_id, lead)
-    
+
     # Recalculate score
     enriched = await enrich_lead_data(lead)
     await update_score_in_db(lead_id, enriched['lead_score'])
@@ -1046,7 +1127,7 @@ CAMPAIGN_CHECK_INTERVAL=86400  # Seconds (86400 = 24 hours)
 Update `Frontend/src/services/api.ts` if backend URL changes:
 
 ```typescript
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 // For production:
 // const API_BASE_URL = 'https://api.yourdomain.com';
@@ -1075,6 +1156,7 @@ SCORING_CONFIG = {
 ```
 
 **To emphasize deal size over other factors:**
+
 ```python
 'deal_size_tiers': {
     'tier_1': {'threshold': 300000, 'points': 60},  # Increased
@@ -1084,6 +1166,7 @@ SCORING_CONFIG = {
 ```
 
 **To weight ML predictions higher:**
+
 ```python
 'ml_max_contribution': 25  # Increased from 15
 ```
@@ -1149,6 +1232,7 @@ const LEADS_PER_PAGE = 50;
    - Use secrets management for production (AWS Secrets Manager, Azure Key Vault)
 
 3. **CORS Configuration:**
+
    ```python
    # Restrict to specific domain
    app.add_middleware(
@@ -1164,12 +1248,13 @@ const LEADS_PER_PAGE = 50;
    - Use MongoDB Atlas for cloud hosting with built-in security
 
 5. **API Rate Limiting:**
+
    ```python
    from slowapi import Limiter
-   
+
    limiter = Limiter(key_func=get_remote_address)
    app.state.limiter = limiter
-   
+
    @app.get("/leads")
    @limiter.limit("100/minute")
    async def get_leads():
@@ -1207,6 +1292,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 ### Version 1.0.0 (Current)
 
 **Features:**
+
 - ✅ Hybrid lead scoring algorithm (ML + business rules)
 - ✅ AI-powered email generation (LLaMA 3.1)
 - ✅ Multi-segment classification (Enterprise/Mid-Market/SMB/Startup)
@@ -1216,12 +1302,14 @@ This project is licensed under the MIT License - see LICENSE file for details.
 - ✅ CSV import/export
 
 **Bug Fixes:**
+
 - Fixed pagination issue (100 → 1,000 lead limit)
 - Fixed all lead scores showing 0%
 - Fixed score display bug (5000% → correct percentage)
 - Fixed ML model scale mismatch (0-100 vs 0-1)
 
 **Known Issues:**
+
 - Scikit-learn version mismatch warning (1.7.2 vs 1.6.1) - non-critical
 - Email sending requires app-specific password for Gmail
 - Frontend requires hard refresh (Ctrl+Shift+R) after score recalculation
@@ -1283,5 +1371,3 @@ This project is licensed under the MIT License - see LICENSE file for details.
 **Built with ❤️ for sales teams who want to work smarter, not harder.**
 
 Last Updated: February 7, 2026
-#   m i n o r   u p d a t e  
- 
